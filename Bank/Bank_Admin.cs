@@ -95,8 +95,7 @@ namespace Bank
                     connect.Open();
                     string query = "select SN,Name,AccountNum,AccountType,InitialBalance,AccountOfficer from customer";
                     SqlCommand command = new SqlCommand(query, connect);
-                    //int result = command.ExecuteNonQuery();
-                    //Console.WriteLine(result);
+                    
                     SqlDataReader display = command.ExecuteReader();
                     while (display.Read() == true)
                     {
@@ -155,7 +154,7 @@ namespace Bank
         }    // End of Employment method.
         public string View_Staff()  // Method to view Banks Staff
         {                           // Method can only be accessed by Manager
-            string staff = "\n Diamond Bank Staff Details.";
+            string staff = "\n\t Diamond Bank Staff Details.";
             try
             {
                 string query = @"select * from Staff";

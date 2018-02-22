@@ -22,31 +22,35 @@ namespace Bank
             Bank_Admin Manager = new Bank_Admin("John", "Smith", 101);
 
 
-            //string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pope francis ogbonna\Documents\Visual Studio 2015\Projects\Bank\Bank\Diamond.mdf;Integrated Security=True";
-            //using (SqlConnection connect = new SqlConnection(connectionString))
-            //{
-            //    connect.Open();
-            //    string query = "select AccountNum from customer";
-            //    SqlCommand command = new SqlCommand(query, connect);
-            //    command.CommandType = CommandType.Text;
-            //    command.CommandText = query;
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pope francis ogbonna\Documents\Visual Studio 2015\Projects\Bank\Bank\Diamond.mdf;Integrated Security=True";
+            using (SqlConnection connect = new SqlConnection(connectionString))
+            {
+                connect.Open();
+                string query = @"select AccountNum from customer";
+                SqlCommand command = new SqlCommand(query, connect);
+                command.CommandType = CommandType.Text;
+                command.CommandText = query;
 
-            //    SqlDataAdapter myAdapter = new SqlDataAdapter();
-            //    myAdapter.SelectCommand = command;
+                SqlDataAdapter myAdapter = new SqlDataAdapter();
+                myAdapter.SelectCommand = command;
 
-            //    DataSet myDataset = new DataSet();
-            //    myAdapter.Fill(myDataset);
+                DataSet myDataset = new DataSet();
+                myAdapter.Fill(myDataset);
 
-            //    ArrayList myArray = new ArrayList();
-            //    foreach (DataRow dtrow in myDataset.Tables[0].Rows)
-            //    {
-            //        myArray.Add(dtrow);
-            //    }
-            //    connect.Close();
-            //}
+                ArrayList myArray = new ArrayList();
+                foreach (DataRow dtrow in myDataset.Tables[0].Rows)
+                {
+                    myArray.Add(dtrow);
+                }
+              
+                    Console.WriteLine(myArray[0].ToString());
+                
+                connect.Close();
+            } //End of the  display array.
 
-            List<string> be = Newcustomer.getFromDataBase().ToList();
-    
+            //List<string> be = Newcustomer.getFromDataBase().ToList();
+            //Console.WriteLine(be);
+            //Console.ReadLine();
                   
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -170,7 +174,7 @@ namespace Bank
                     Console.WriteLine("Enter Your Account Number:");// this code validates user input with database data.
                     int numb = Convert.ToInt32(Console.ReadLine());
                     string query = "select Name from customer where AccountNum = @AccountNum";
-                    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pope francis ogbonna\Documents\Visual Studio 2015\Projects\Bank\Bank\Diamond.mdf;Integrated Security=True";
+                     connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pope francis ogbonna\Documents\Visual Studio 2015\Projects\Bank\Bank\Diamond.mdf;Integrated Security=True";
                     using (SqlConnection connect = new SqlConnection(connectionString))
                     {
                         connect.Open();

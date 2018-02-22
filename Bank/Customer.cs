@@ -224,13 +224,20 @@ namespace Bank
             List<string> result = new List<string>();
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pope francis ogbonna\Documents\Visual Studio 2015\Projects\Bank\Bank\Diamond.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
-            string query = "select Name from customer";
+            string query = "select Name from customer;";
             try
             {
                 con.Open();
-                DataTable tap = new DataTable();
-                new SqlDataAdapter(query, con).Fill(tap);
-                result = tap.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("Name")).ToList();
+                // DataTable tap = new DataTable();
+                // new SqlDataAdapter(query, con).Fill(tap);
+                //result = tap.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("Name")).ToList();
+                SqlCommand command = new SqlCommand(query, con);
+                SqlDataReader List = command.ExecuteReader();
+                while (List.Read() ==true)
+                {
+                    result.Add(List.ToString());
+                    Console.WriteLine(result);
+                }
             }
             catch (Exception)
             {
